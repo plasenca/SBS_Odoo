@@ -7,7 +7,6 @@ class ProductsIn(models.Model):
     _name = "products.sbs.db"  # Nombre en base de datos: products_sbs_db
     _description = "Productos de Smart Binary Solutions"
 
-    _id = fields.id(string="Orden de Entrada")
     name = fields.Char(string="Modelo", required=True)
     brand = fields.Selection(
         [
@@ -23,28 +22,22 @@ class ProductsIn(models.Model):
             ('toshiba', 'Toshiba')
         ]
         , string="Marca", required=True)
-    product_model = fields.Char(string="Modelo", required=True)
     serie = fields.Char(string="Serie", required=True)
-    producto_flaw = fields.Html(string="Fallas")
-    observation = fields.Html(string="Observaciones")
-
-class OrderProductIn(models.Models):
-    _name = "order.product.sbs.db"
-    _description = "Orden de Productos de Smart Binary Solutions"
+    date = fields.Date(string="Fecha", required=True)
+    producto_flaw = fields.Text(string="Fallas")
+    observation = fields.Text(string="Observaciones")
+    client_id = fields.Many2one("client.sbs.db", string="Cliente")
     
-    order_pedido = fields.Integer(string="Orden de pedido", )
-    date_order = fields.Date(string="Fecha de pedido")
+class Client(models.Model):
+    _name = "client.sbs.db"
+    _description = "Clientes de Smart Binary Solutions"
+    
+    name = fields.Char(string="Razón Social", required=True)
+    ruc_dni = fields.Integer(string="RUC/DNI", required=True)
+    contact = fields.Char(string="Contacto")
+    address = fields.Char(string="Dirección")
+    number_phone = fields.Integer(string="Número de Teléfono")
+    email = fields.Char(string="Correo Electrónico")
+    
+    
 
-# class smart_binary_solutions(models.Model):
-#     _name = 'smart_binary_solutions.smart_binary_solutions'
-#     _description = 'smart_binary_solutions.smart_binary_solutions'
-
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         for record in self:
-#             record.value2 = float(record.value) / 100

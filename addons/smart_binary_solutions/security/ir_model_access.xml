@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
-    <record id="model_access_movimiento" model="ir.model.access">
-        <field name="name">model.access.movimiento</field>
-        <field name="model_id" ref="saldo_app.model_sa_movimiento"/>
+    <record id="model_access_productos_in" model="ir.model.access">
+        <field name="name">model.access.productos_in</field>
+        <field name="model_id" ref="smart_binary_solutions.model_products_sbs_db"/>
         <field name="group_id" ref="base.group_system"/>
         <field name="perm_create" eval="True"/>
         <field name="perm_write" eval="True"/>
@@ -11,24 +10,7 @@
         <field name="perm_read" eval="True"/>
     </record>
 
-    <record id="model_access_categoria" model="ir.model.access">
-        <field name="name">model.access.categoria</field>
-        <field name="model_id" ref="saldo_app.model_sa_category"/>
-        <field name="group_id" ref="base.group_system"/> <!-- Administración/Ajustes-->
-        <field name="perm_create" eval="True"/>
-        <field name="perm_write" eval="True"/>
-        <field name="perm_unlink" eval="True"/>
-        <field name="perm_read" eval="True"/>
-    </record>
+    
 
-    <record id="model_access_tag" model="ir.model.access">
-        <field name="name">model.access.tag</field>
-        <field name="model_id" ref="saldo_app.model_sa_tag"/>
-        <field name="group_id" ref="base.group_system"/> <!-- Administración/Ajustes-->
-        <field name="perm_create" eval="True"/>
-        <field name="perm_write" eval="True"/>
-        <field name="perm_unlink" eval="True"/>
-        <field name="perm_read" eval="True"/>
-    </record>
     
 </odoo>
