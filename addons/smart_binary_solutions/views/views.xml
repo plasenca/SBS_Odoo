@@ -1,5 +1,40 @@
 <odoo>
 
+    <!-- Forms -->
+
+    <record id="client_view_form" model="ir.ui.view">
+        <field name="name">client.products.sbs.db</field>
+        <field name="model">client.sbs.db</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group >
+                        <group>
+                            <group>
+                                <field name="name"/>                       
+                            </group>
+                            <group >
+                                <field name="ruc_dni"/>  
+                            </group>
+                            <group>
+                                <field name="contact"/>   
+                            </group>
+                            <group>
+                                <field name="address"/>
+                            </group>
+                            <group>
+                                <field name="number_phone"/>
+                            </group>
+                            <group>
+                                <field name="email"/>
+                            </group>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
     <record id="product_in_view_form" model="ir.ui.view">
         <field name="name">product_id.products.sbs.db</field>
         <field name="model">products.sbs.db</field>
@@ -7,61 +42,25 @@
              <form string="Entrada de Producto">
                 <sheet>
                     <group>
-                        <record id="client_view_form" model="ir.ui.view">
-                            <field name="name">client.products.sbs.db</field>
-                            <field name="model">client.sbs.db</field>
-                            <field name="arch" type="xml">
-                                <form>
-                                    <sheet>
-                                        <group >
-                                            <group>
-                                                <group>
-                                                    <field name="name"/>                       
-                                                </group>
-                                                <group >
-                                                    <field name="ruc_dni"/>  
-                                                </group>
-                                                <group>
-                                                    <field name="contact"/>   
-                                                </group>
-                                                <group>
-                                                    <field name="address"/>
-                                                </group>
-                                                <group>
-                                                    <field name="number_phone"/>
-                                                </group>
-                                                <group>
-                                                    <field name="email"/>
-                                                </group>
-                                            </group>
-                                        </group>
-                                    </sheet>
-                                </form>
-                            </field>
-                        </record>
+                        <group>
+                            <field name="name" />
+                            <field name="brand" />
+                        </group>
+                        <group>
+                            <field name="serie" />
+                            <field name="date" />
+                        </group>
                     </group>
-
+                    <group string="Datos del Producto">
+                        <field name="producto_flaw" />
+                        <field name="observation" />
+                    </group>
                     <group>
-                        <group>
-                            <group>
-                                <field name="name"/>                       
-                            </group>
-                            <group >
-                                <field name="brand"/>  
-                            </group>
-                            <group>
-                                <field name="serie"/>   
-                            </group>
-                            <group>
-                                <field name="date"/>
-                            </group>
-                        </group>
-                        <group>
-                            <field name="producto_flaw"/>
-                            <field name="observation"/>
-                        </group>
+                        <field name="user_id" />
                     </group>
-                        
+                    <div class="oe_chatter">
+                        <field name="user_id" widget="mail_thread"/>
+                    </div>
                 </sheet>
                 <!-- <div class="oe_chatter">
                     <field name="user_id" widget="mail_thread"/>
@@ -71,13 +70,70 @@
     </record>
 
 
+    <!-- Vistas -->
+    <record id="view_tree_products" model="ir.ui.view">
+        <field name="name">view.tree.products.sbs.db</field>
+        <field name="model">products.sbs.db</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="brand" />
+                <field name="serie" />
+                <field name="date" />
+            </tree>
+        </field>
+    </record>
 
     <record id="action_view_productIn" model="ir.actions.act_window">
         <field name="name">Entrada de Producto</field>
         <field name="res_model">products.sbs.db</field>
     </record>
 
+    <record id="view_res_users_add_products_id" model="ir.ui.view">
+        <field name="name">view.res.users.add.products_id</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_simple_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="sheet" position="inside">
+                <group>
+                    <field name="products_id_user" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Configuraciones de Servidor -->
+    <record id="action_server_mi_cuenta" model="ir.actions.server">
+        <field name="name">Mi Cuenta</field>
+        <field name="model_id" ref="base.model_res_users"/>
+        <field name="state">code</field>
+        <field name="code">action = model.mi_cuenta()</field>
+    </record>
+
+    <!-- <record id="products_in_view_search" model="ir.ui.view">
+        <field name="name">products_in.view.search</field>
+        <field name="model">products.sbs.db</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="brand" />
+                <field name="serie" />
+
+                <filter name="filter_today" 
+                string="Hoy" 
+                domain="[('date', '&gt;', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00')),('date', '&lt;', datetime.datetime.now().strftime('%Y-%m-%d 23:59:59'))]"/>
+            </search>
+        </field>
+    </record> -->
+
+
+
     <!-- Menús -->
+    <menuitem
+        id="mi_cuenta_menu"
+        name="Mi Cuenta"
+        action="smart_binary_solutions.action_server_mi_cuenta"
+        parent=""/>
     <menuitem
         id="product_menu"
         name="Productos"
