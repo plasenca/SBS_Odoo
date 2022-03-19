@@ -9,7 +9,7 @@
                 ('create_uid', '=', user.id)
             ]
         </field>
-        <field name="groups" eval="[(4, ref('smart_binary_solutions.model_access_tecnico')),]" />
+        <field name="groups" eval="[(4, ref('smart_binary_solutions.res_groups_tecnico1'))]" />
         <field name="perm_read" eval="True"/>
         <field name="perm_create" eval="True"/>
         <field name="perm_unlink" eval="True"/>
