@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from email.policy import default
-from unicodedata import category
 from odoo import models, fields, api
 
 
@@ -10,6 +8,16 @@ class ProductsIn(models.Model):
     _description = "Productos de Smart Binary Solutions"
     _inherit = "mail.thread" # Para que se pueda usar el método de seguimiento de Odoo
 
+    
+    # Valores del Cliente
+    name_client = fields.Char(string="Razón Social", required=True)
+    ruc_dni = fields.Char(string="RUC/DNI", required=True)
+    contact = fields.Char(string="Contacto")
+    address = fields.Char(string="Dirección", required=True)
+    number_phone = fields.Char(string="Número de Teléfono")
+    email = fields.Char(string="Correo Electrónico") 
+    
+    # Valores del Producto
     name = fields.Char(string="Modelo", required=True)
     brand = fields.Selection(
         [
@@ -32,18 +40,7 @@ class ProductsIn(models.Model):
     # Referencias
     user_id = fields.Many2one('res.users', string="Usuario", default=lambda self: self.env.user.id)
     category_id = fields.Many2one("sa.category", string="Categoría")
-    client_id = fields.Many2one("client.sbs.db", string="Cliente")
     
-class Client(models.Model):
-    _name = "client.sbs.db"
-    _description = "Clientes de Smart Binary Solutions"
-    
-    name = fields.Char(string="Razón Social", required=True)
-    ruc_dni = fields.Integer(string="RUC/DNI", required=True)
-    contact = fields.Char(string="Contacto")
-    address = fields.Char(string="Dirección")
-    number_phone = fields.Integer(string="Número de Teléfono")
-    email = fields.Char(string="Correo Electrónico")
     
 class Users(models.Model):
     _inherit = "res.users"
@@ -65,3 +62,5 @@ class Category(models.Model):
     _description = "Categoria"
     
     name = fields.Char("Nombre")
+    
+
