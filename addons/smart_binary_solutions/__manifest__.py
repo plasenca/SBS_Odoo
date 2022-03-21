@@ -3,7 +3,7 @@
     'name': "Smart Binary Solutions",
 
     'summary': """
-        Módulo de Recepción de Prodcutos""",
+        Módulo de Recepción de Productos""",
 
     'description': """
         Módulo de Recepción de Productos con entrada y salida.
@@ -27,6 +27,8 @@
         'security/res_group.xml',
         'security/ir_rule.xml',
         'security/ir_model_access.xml',
+        'report/templates.xml',
+        'report/report.xml',
         'views/views.xml',
         'views/templates.xml',
     ],

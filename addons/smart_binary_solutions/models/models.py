@@ -21,16 +21,16 @@ class ProductsIn(models.Model):
     name = fields.Char(string="Modelo", required=True)
     brand = fields.Selection(
         [
-            ('acer', 'Acer'),
-            ('apple', 'Apple'),
-            ('asus', 'Asus'),
-            ('dell', 'Dell'),
-            ('hp', 'HP'),
-            ('lenovo', 'Lenovo'),
-            ('msi', 'MSI'),
-            ('samsung', 'Samsung'),
-            ('sony', 'Sony'),
-            ('toshiba', 'Toshiba')
+            ('Acer', 'Acer'),
+            ('Apple', 'Apple'),
+            ('Asus', 'Asus'),
+            ('Dell', 'Dell'),
+            ('HP', 'HP'),
+            ('Lenovo', 'Lenovo'),
+            ('MSI', 'MSI'),
+            ('Samsung', 'Samsung'),
+            ('Sony', 'Sony'),
+            ('Toshiba', 'Toshiba')
         ]
         , string="Marca", required=True)
     serie = fields.Char(string="Serie", required=True)
@@ -40,6 +40,11 @@ class ProductsIn(models.Model):
     # Referencias
     user_id = fields.Many2one('res.users', string="Usuario", default=lambda self: self.env.user.id)
     category_id = fields.Many2one("sa.category", string="Categoría")
+    
+    # @api.model
+    # def action_salida(self):
+    #     for rec in self:
+    #         rec.write({'state': 'done'})
     
     
 class Users(models.Model):

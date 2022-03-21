@@ -1,4 +1,25 @@
 <odoo>
+    <!-- Funcionalidades -->
+
+    <record id="action_view_productIn" model="ir.actions.act_window">
+        <field name="name">Entrada de Producto</field>
+        <field name="res_model">products.sbs.db</field>
+    </record>
+
+    <record id="view_res_users_add_products_id" model="ir.ui.view">
+        <field name="name">view.res.users.add.products_id</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_simple_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="sheet" position="inside">
+                <group>
+                    <field name="products_id_user" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+
 
     <!-- Forms -->
 
@@ -7,6 +28,10 @@
         <field name="model">products.sbs.db</field>
         <field name="arch" type="xml">
              <form string="Entrada de Producto">
+                <!-- <header>
+                    <button string="Salida" type="object" name="action_salida"
+                            states="draft" class="oe_highlight" />/>
+                </header> -->
                 <sheet>
                     <group>
 
@@ -74,23 +99,6 @@
         </field>
     </record>
 
-    <record id="action_view_productIn" model="ir.actions.act_window">
-        <field name="name">Entrada de Producto</field>
-        <field name="res_model">products.sbs.db</field>
-    </record>
-
-    <record id="view_res_users_add_products_id" model="ir.ui.view">
-        <field name="name">view.res.users.add.products_id</field>
-        <field name="model">res.users</field>
-        <field name="inherit_id" ref="base.view_users_simple_form"/>
-        <field name="arch" type="xml">
-            <xpath expr="sheet" position="inside">
-                <group>
-                    <field name="products_id_user" />
-                </group>
-            </xpath>
-        </field>
-    </record>
 
     <!-- Configuraciones de Servidor -->
     <record id="action_server_mi_cuenta" model="ir.actions.server">
