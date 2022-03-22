@@ -11,11 +11,8 @@ services:
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
-      # - ./src/packages/wkhtmltopdf/bin/wkhtmltopdf:/usr/local/bin/
-      # - ./src/packages/wkhtmltopdf/include/wkhtmltox:/usr/local/include/wkhtmltox
-      # - ./src/packages/wkhtmltopdf/lib:/usr/local/lib
       - ./addons:/mnt/extra-addons
-      - ./addons-customize:/mnt/extra-addons-customize
+    entrypoint: "/usr/bin/odoo -c /etc/odoo/odoo.conf"
   db:
     container_name: ${DB_HOST}
     image: ${DB_IMAGE}:${DB_TAG}
