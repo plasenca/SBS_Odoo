@@ -30,7 +30,14 @@ class ProductsIn(models.Model):
             ('MSI', 'MSI'),
             ('Samsung', 'Samsung'),
             ('Sony', 'Sony'),
-            ('Toshiba', 'Toshiba')
+            ('Toshiba', 'Toshiba'),
+            ('Epson', 'Epson'),
+            ('Canon', 'Canon'),
+            ('Wester Digital', 'Wester Digital'),
+            ('Segeate', 'Segeate'),
+            ('Philips', 'Philips'),
+            ('AOC', 'AOC'),
+            ('Varios', 'Varios'),
         ]
         , string="Marca", required=True)
     serie = fields.Char(string="Serie", required=True)
