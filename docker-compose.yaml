@@ -12,7 +12,7 @@ services:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
       - ./addons:/mnt/extra-addons
-    entrypoint: "/usr/bin/odoo -c /etc/odoo/odoo.conf"
+    entrypoint: "/usr/bin/odoo -c /etc/odoo/odoo.conf -u smart_binary_solutions"
   db:
     container_name: ${DB_HOST}
     image: ${DB_IMAGE}:${DB_TAG}
