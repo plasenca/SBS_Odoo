@@ -1,0 +1,39 @@
+.o_company_1_layout {
+                font-family: Lato;
+                &.o_clean_footer {
+                    border-top: 3px solid black;
+                    h4 {
+                        color: black;
+                    }
+                    .pagenumber {
+                        border: 3px solid black;
+                        background-color: black;
+                    }
+                }
+                &.o_report_layout_bold {
+                    h1, h2, h3 {
+                        color: black;
+                    }
+                    strong {
+                        color: black;
+                    }
+                    table {
+                       thead {
+                           color: black;
+                           tr th {
+                                border-top: 3px solid black !important;
+                            }
+                        }
+                        tbody {
+                            tr:last-child td {
+                                border-bottom: 3px solid black;
+                            }
+                        }
+                    }
+                    #total {
+                        strong {
+                            color: black;
+                        }
+                    }
+                }
+            }
