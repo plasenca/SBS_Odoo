@@ -4,6 +4,7 @@ from email.policy import default
 from odoo import models, fields, api
 from datetime import date
 
+# date.today()
 
 class ProductsIn(models.Model):
     _name = "products.sbs.db"  # Nombre en base de datos: products_sbs_db
@@ -47,7 +48,7 @@ class ProductsIn(models.Model):
             ('Varios', 'Varios'),
         ], string="Marca", required=True)
     serie = fields.Char(string="Serie", required=True)
-    date = fields.Date(string="Fecha", required=True, default=date.today())
+    date = fields.Date(string="Fecha", required=True, default=lambda self: fields.datetime.now())
     producto_flaw = fields.Html(string="Fallas")
     observation = fields.Html(string="Observaciones")
     # Referencias
