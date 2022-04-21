@@ -2,7 +2,7 @@
     <!-- Funcionalidades -->
 
     <record id="action_view_productIn" model="ir.actions.act_window">
-        <field name="name">Entrada de Producto</field>
+        <field name="name">Servicio de Entrada</field>
         <field name="res_model">products.sbs.db</field>
         <field name="context">{"search_default_tag_in":1}</field>
     </record>
