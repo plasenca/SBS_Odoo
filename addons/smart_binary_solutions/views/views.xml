@@ -8,7 +8,7 @@
     </record>
 
     <record id="action_view_productOut" model="ir.actions.act_window">
-        <field name="name">Entrada de Salida</field>
+        <field name="name">Servicio de Salida</field>
         <field name="res_model">products.sbs.db</field>
         <field name="context">{"search_default_tag_out":1}</field>
     </record>
@@ -34,14 +34,13 @@
         <field name="name">product_id.products.sbs.db</field>
         <field name="model">products.sbs.db</field>
         <field name="arch" type="xml">
-             <form string="Entrada de Producto">
+            <form string="Entrada de Producto">
                 <header>
                     <button string="Enviar a Salida" type="object" name="tag_entregado" class="oe_highlight"/>
                     <field name="tag" widget="statusbar"/>
                 </header>
                 <sheet>
                     <group>
-
                         <group style="text-align: center;">
                             <field name="id" default="self.env.products_sbs_db.id"/>
                         </group>
@@ -96,7 +95,6 @@
         <field name="model">products.sbs.db</field>
         <field name="arch" type="xml">
             <tree>
-                <field name="id" />
                 <field name="name_client" />
                 <field name="name" />
                 <field name="brand" />
@@ -130,37 +128,43 @@
                 string="Hoy" 
                 domain="[('date', '&gt;', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00')),('date', '&lt;', datetime.datetime.now().strftime('%Y-%m-%d 23:59:59'))]"/> -->
 
-            <filter name="tag_in" string="Entrada" domain="[('tag', '=', 'Recibido')]"/>
-            <filter name="tag_out" string="Salida" domain="[('tag', '=', 'Entregado')]"/> <!-- context="{'group_by': 'field_name'}" -->
-            <filter name="marca_group" string="Marca" context="{'group_by': 'brand'}" />
+                <filter name="tag_in" string="Entrada" domain="[('tag', '=', 'Recibido')]"/>
+                <filter name="tag_out" string="Salida" domain="[('tag', '=', 'Entregado')]"/> <!-- context="{'group_by': 'field_name'}" -->
+                <filter name="marca_group" string="Marca" context="{'group_by': 'brand'}" />
             </search>
         </field>
     </record>
 
 
-
     <!-- Menús -->
-    <menuitem
+    <!-- <menuitem
         id="mi_cuenta_menu"
         name="Mi Cuenta"
         action="smart_binary_solutions.action_server_mi_cuenta"
-        parent=""/>
+        parent=""/> -->
     <menuitem
         id="product_menu"
-        name="Productos"
+        name="Servicios"
         action="smart_binary_solutions.action_view_productIn"
         parent=""/>
-    <!-- Acciones de Ventana -->
-    <menuitem
-        id="products_in_menu"
-        name="Productos Entrada"
-        action="smart_binary_solutions.action_view_productIn"               
-        parent="smart_binary_solutions.product_menu"/>
-    <menuitem
-        id="products_out_menu"
-        name="Productos Salida"
-        action="smart_binary_solutions.action_view_productOut"
-        parent="smart_binary_solutions.product_menu"/>
-    
 
+    <!-- Acciones de Ventana -->
+
+        <!-- Model products.sbs.db -->
+        <menuitem
+            id="products_all_menu"
+            name="Servicios"
+            action=""
+            parent="smart_binary_solutions.product_menu"/>
+        <menuitem
+            id="products_in_menu"
+            name="Servicios Entrada"
+            action="smart_binary_solutions.action_view_productIn"
+            parent="smart_binary_solutions.products_all_menu"/>
+        <menuitem
+            id="products_out_menu"
+            name="Servicios Salida"
+            action="smart_binary_solutions.action_view_productOut"
+            parent="smart_binary_solutions.products_all_menu"/>
+    
 </odoo>
