@@ -78,7 +78,7 @@
                         <field name="observation" />
                     </group>
                     <group>
-                        <field name="user_id" />
+                        <field name="solution" />
                     </group>
                     <div class="oe_chatter">
                         <field name="user_id" widget="mail_thread"/>
@@ -98,8 +98,10 @@
                 <field name="name_client" />
                 <field name="name" />
                 <field name="brand" />
-                <field name="serie" />
-                <field name="date" />
+                <field name="serie" optional="hide"/>
+                <field name="date" optional="hide"/>
+                <field name="user_id" />
+                <field name="producto_flaw" />
             </tree>
         </field>
     </record>
@@ -146,7 +148,8 @@
         id="product_menu"
         name="Servicios"
         action="smart_binary_solutions.action_view_productIn"
-        parent=""/>
+        web_icon="smart_binary_solutions,static/src/img/servicios.png"
+        />
 
     <!-- Acciones de Ventana -->
 

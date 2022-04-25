@@ -51,6 +51,8 @@ class ProductsIn(models.Model):
     date = fields.Date(string="Fecha", required=True, default=lambda self: fields.datetime.now())
     producto_flaw = fields.Html(string="Fallas")
     observation = fields.Html(string="Observaciones")
+    solution = fields.Html(string="Solución")
+    
     # Referencias
     user_id = fields.Many2one(
         'res.users', string="Usuario", default=lambda self: self.env.user.id)
