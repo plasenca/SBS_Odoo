@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Funcionalidades -->
+    <record id="action_view_services" model="ir.actions.act_window">
+        <field name="name">Servicio de Entrada</field>
+        <field name="res_model">services.sbs.db</field>
+        <!-- <field name="context">{"search_default_tag_in":1}</field> -->
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">Ingresa tus servicios aquí!!!</p>
+        </field>
+    </record>
+
+    <record id="view_res_users_services" model="ir.ui.view">
+        <field name="name">view.res.users.add.services</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_simple_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="sheet" position="inside">
+                <group>
+                    <field name="services_id_user" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Wizards -->
+
+
+    <record model="ir.actions.act_window" id="wizard_sale_for_services_act_window">
+        <field name="name">Cotización Servicios</field>
+        <field name="res_model">sale.order</field>
+        <!-- <field name="view_type">form</field> -->
+        <field name="view_mode">form</field>
+        <!-- <field name="target">new</field> -->
+    </record>
+
+
+    <!-- Forms -->
+    <record id="services_sbs_db_view_form" model="ir.ui.view">
+        <field name="name">services.sbs.db.view.form</field>
+        <field name="model">services.sbs.db</field>
+        <field name="arch" type="xml">
+            <form string="Servicios">
+                <header>
+                    <button string="Enviar a Salida" type="object" name="tag_entregado" class="oe_highlight"/>
+                    <button name="%(wizard_sale_for_services_act_window)d" string="Cotizar" class="oe_edit_only" type="action"/>
+                    <field name="tag" widget="statusbar"/>
+                </header>
+                <sheet>
+                <!-- <div class="oe_button_box" name="button_box">
+                        <button name="preview_sale_order" type="object" class="oe_stat_button" icon="fa-globe icon">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Ver</span>
+                                <span class="o_stat_text">Modelo</span>
+                            </div>
+                        </button>
+                    </div> -->
+                    <group>
+                        <field name="client_name"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vistas -->
+    <record id="view_tree_services" model="ir.ui.view">
+        <field name="name">view.tree.services.sbs.db</field>
+        <field name="model">services.sbs.db</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="client_name" />
+                <field name="name" />
+                <field name="brand" />
+                <field name="serie" optional="hide"/>
+                <field name="date" optional="hide"/>
+                <field name="services_id_user" />
+                <field name="producto_flaw" />
+            </tree>
+        </field>
+    </record>
+
+
+
+
+
+
+    <!-- Menús -->
+    <menuitem
+        id="services_all"
+        name="Servicios_test"
+        action="smart_binary_solutions.action_view_services"
+        />
+
+    <!-- Acciones de Ventana -->
+    <menuitem
+        id="services_all_menu"
+        name="Servicios"
+        action=""
+        parent="smart_binary_solutions.services_all"
+        />
+    <menuitem
+        id="services_menu"
+        name="Servicios Todos"
+        action="smart_binary_solutions.action_view_services"
+        parent="smart_binary_solutions.services_all_menu"
+        />
+
+
+</odoo>
