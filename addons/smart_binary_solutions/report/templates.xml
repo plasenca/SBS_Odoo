@@ -9,7 +9,7 @@
                         <div style="border-style: solid;border-width:1px;">
                             <table style="width:100%;">
                                 <tbody class="invoice_tbody">
-                                    <tr >
+                                    <tr>
                                         <td><t t-esc="'Razón Social: '"/></td>
                                         <td><t t-esc="product.name_client"/></td>
                                         <td><t t-esc="'Contacto: '"/></td>
