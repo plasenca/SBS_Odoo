@@ -7,7 +7,7 @@ services:
     depends_on:
       - db
     ports:
-      - "${WEB_PORT}:8070"
+      - "${WEB_PORT}:8069"
     volumes:
       - odoo-web-data:/var/lib/odoo
       - ./config:/etc/odoo
@@ -25,15 +25,20 @@ services:
       - "${DB_PORT}:5432"
     volumes:
       - odoo-db-data:/var/lib/postgresql/data/pgdata
-  proxy:
-    depends_on:
-        - web
-    container_name: odoo_proxy
+  nginx:
     build:
-        context: .
-        dockerfile: nginx/Dockerfile-nginx
+      context: .
+      dockerfile: nginx/Dockerfile-nginx
+    #restart: always
     ports:
-        - "8069:8069"
+        - 80:80
+        - 443:443
+    volumes:
+        # - ./nginx/ssl/:/etc/ssl/nginx/
+        - ./nginx/sites-enabled/:/etc/nginx/conf.d/
+    links:
+        - web
+
 
 volumes:
   odoo-db-data:
