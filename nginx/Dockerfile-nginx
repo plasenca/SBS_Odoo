@@ -1,4 +1,0 @@
-FROM nginx:latest
-LABEL MAINTAINER DevfullScoopers <devfull@scoopers.com>
-
-RUN mkdir -p /etc/ssl/nginx/
