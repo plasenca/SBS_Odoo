@@ -44,7 +44,6 @@
                         <group style="text-align: center;">
                             <field name="id" default="self.env.products_sbs_db.id"/>
                         </group>
-
                     </group>
                     <h2 style="color: #71639e;">Nombre del Cliente</h2>
                     <group>
@@ -74,11 +73,11 @@
                     </group>
                     <h2 style="color: #71639e;">Datos del Producto</h2>
                     <group>
-                        <field name="producto_flaw" />
-                        <field name="observation" />
+                        <field name="producto_flaw"/>
+                        <field name="observation"/>
                     </group>
                     <group>
-                        <field name="solution" />
+                        <field name="solution"/>
                     </group>
                     <div class="oe_chatter">
                         <field name="user_id" widget="mail_thread"/>

@@ -12,7 +12,9 @@ class Services(models.Model):
     _inherit = "mail.thread"
     
     # Principal Fields
-    client_name = fields.Many2one('res.partner', string="Cliente")
+    client_name = fields.Many2one('res.partner',
+                                  string="Cliente", 
+                                  required=True)
     # Etiqueta de Producto Activo
     tag = fields.Selection([
         ("Recibido", "Recibido"),
@@ -20,7 +22,7 @@ class Services(models.Model):
     ], string="Estado", default="Recibido")
     
     # Valores del Producto
-    name = fields.Char(string="Modelo", required=True)
+    name = fields.Char(string="Modelo")
     brand = fields.Selection(
         [
             ('Acer', 'Acer'),
@@ -40,7 +42,7 @@ class Services(models.Model):
             ('Philips', 'Philips'),
             ('AOC', 'AOC'),
             ('Varios', 'Varios'),
-        ], string="Marca", required=True)
+        ], string="Marca")
     serie = fields.Char(string="Serie", required=True)
     date = fields.Date(string="Fecha", required=True, default=lambda self: fields.datetime.now())
     producto_flaw = fields.Html(string="Fallas")
@@ -138,6 +140,6 @@ class UsersServices(models.Model):
 
 class Category(models.Model):
     _name = "sa.category"
-    _description = "Categoria"
+    _description = "Marca"
 
     name = fields.Char("Nombre")
