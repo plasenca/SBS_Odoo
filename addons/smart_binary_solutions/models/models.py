@@ -13,8 +13,8 @@ class Services(models.Model):
     
     # Principal Fields
     client_name = fields.Many2one('res.partner',
-                                  string="Cliente", 
-                                  required=True)
+                                string="Cliente", 
+                                required=True)
     # Etiqueta de Producto Activo
     tag = fields.Selection([
         ("Recibido", "Recibido"),
@@ -52,7 +52,7 @@ class Services(models.Model):
     # Referencias
     services_id_user = fields.Many2one(
         'res.users', string="Usuario", default=lambda self: self.env.user.id)
-    category_id = fields.Many2one("sa.category", string="Categoría")
+    category_id = fields.Many2one("sa.category", string="Marca")
     
     def tag_entregado(self):
         if self.tag=="Recibido":

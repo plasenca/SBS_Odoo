@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- Funcionalidades -->
-    <record id="action_view_services" model="ir.actions.act_window">
+    <record id="action_view_services_in" model="ir.actions.act_window">
         <field name="name">Servicio de Entrada</field>
         <field name="res_model">services.sbs.db</field>
-        <!-- <field name="context">{"search_default_tag_in":1}</field> -->
         <field name="view_mode">list,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_empty_folder">Ingresa tus servicios aquí!!!</p>
         </field>
+        <field name="context">{"search_default_tag_in":1}</field>
+    </record>
+    <record id="action_view_services_out" model="ir.actions.act_window">
+        <field name="name">Servicio de Entrada</field>
+        <field name="res_model">services.sbs.db</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">Ingresa tus servicios aquí!!!</p>
+        </field>
+        <field name="context">{"search_default_tag_out":1}</field>
     </record>
 
     <record id="view_res_users_services" model="ir.ui.view">
@@ -59,9 +68,10 @@
                         <group>
                             <group>
                                 <group>
-                                    <h1 style="color:#ffffff;text-align:center;">
-                                        <field name="id" default="'Servicio %s'(%self.env.products_sbs_db.id)"/>
+                                    <h1 style="color:#00000;text-align:left;">
+                                        Servicio: S<field name="id"/>
                                     </h1>
+                                    <br/>
                                 </group>
                                 <group>
                                     <field name="client_name"/>
@@ -111,6 +121,28 @@
     </record>
 
 
+    <!-- Filtrado de Búsqueda -->
+    <record id="services_view_search" model="ir.ui.view">
+        <field name="name">services.view.search</field>
+        <field name="model">services.sbs.db</field>
+        <field name="arch" type="xml">
+            <search >
+                <field name="client_name" />
+                <field name="name" />
+                <field name="category_id" />
+                <field name="serie" />
+            <!-- 
+                <filter name="filter_today" 
+                string="Hoy" 
+                domain="[('date', '&gt;', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00')),('date', '&lt;', datetime.datetime.now().strftime('%Y-%m-%d 23:59:59'))]"/> -->
+
+                <filter name="tag_in" string="Entrada" domain="[('tag', '=', 'Recibido')]"/>
+                <filter name="tag_out" string="Salida" domain="[('tag', '=', 'Entregado')]"/> <!-- context="{'group_by': 'field_name'}" -->
+                <filter name="marca_group" string="Marca" context="{'group_by': 'category_id'}" />
+            </search>
+        </field>
+    </record>
+
 
 
 
@@ -118,11 +150,11 @@
     <!-- Menús -->
     <menuitem
         id="services_all"
-        name="Servicios_test"
-        action="smart_binary_solutions.action_view_services"
+        name="Servicios"
+        action="smart_binary_solutions.action_view_services_in"
         />
 
-    <!-- Acciones de Ventana -->
+    <!-- Acciones de Ventana - Servicios -->
     <menuitem
         id="services_all_menu"
         name="Servicios"
@@ -130,11 +162,22 @@
         parent="smart_binary_solutions.services_all"
         />
     <menuitem
-        id="services_menu"
-        name="Servicios Todos"
-        action="smart_binary_solutions.action_view_services"
+        id="services_menu_in"
+        name="Servicios: Entrada"
+        action="smart_binary_solutions.action_view_services_in"
+        parent="smart_binary_solutions.services_all_menu"
+        />
+    <menuitem
+        id="services_menu_out"
+        name="Servicios: Salida"
+        action="smart_binary_solutions.action_view_services_out"
         parent="smart_binary_solutions.services_all_menu"
         />
 
+    <!-- Acciones de Ventana - Contactos -->
+    <!-- <menuitem
+        id="contactos_services_menu"
+        name="Contactos"
+        /> -->
 
 </odoo>
