@@ -1,19 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- Administrador - SBS/Administrador -->
-    <record id="model_access_productos_in" model="ir.model.access">
-        <field name="name">model.access.productos_in</field>
-        <field name="model_id" ref="smart_binary_solutions.model_products_sbs_db"/>
-        <field name="group_id" ref="smart_binary_solutions.res_groups_administrador"/>
-        <field name="group_id" ref="base.group_system"/>
-        <field name="perm_create" eval="True"/>
-        <field name="perm_write" eval="True"/>
-        <field name="perm_unlink" eval="True"/>
-        <field name="perm_read" eval="True"/>
-    </record>
+    
+        <!-- Permisos-Modelo: products.sbs.sb -->
+        <record id="model_access_productos_in" model="ir.model.access">
+            <field name="name">model.access.productos_in</field>
+            <field name="model_id" ref="smart_binary_solutions.model_products_sbs_db"/>
+            <field name="group_id" ref="smart_binary_solutions.res_groups_administrador"/>
+            <field name="group_id" ref="base.group_system"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_read" eval="True"/>
+        </record>
+
+        <!-- Permisos-Modelo: services.sbs.db -->
+        <record id="model_access_services" model="ir.model.access">
+            <field name="name">model.access.services</field>
+            <field name="model_id" ref="smart_binary_solutions.model_services_sbs_db"/>
+            <field name="group_id" ref="smart_binary_solutions.res_groups_administrador"/>
+            <field name="group_id" ref="base.group_system"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_read" eval="True"/>
+        </record>
+
+        <!-- Permisos-Modelo: sa.category -->
+        <record id="model_access_category" model="ir.model.access">
+            <field name="name">model.access.category</field>
+            <field name="model_id" ref="smart_binary_solutions.model_sa_category"/>
+            <field name="group_id" ref="smart_binary_solutions.res_groups_administrador"/>
+            <field name="group_id" ref="base.group_system"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_unlink" eval="True"/>
+            <field name="perm_read" eval="True"/>
+        </record>
 
 
     <!-- Para usuario tecnico 1 -->
+    
     <record id="model_access_tecnico" model="ir.model.access">
         <field name="name">model.access.tecnico</field>
         <field name="model_id" ref="smart_binary_solutions.model_products_sbs_db"/>

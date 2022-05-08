@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Funcionalidades -->
+    <record id="action_view_services_in" model="ir.actions.act_window">
+        <field name="name">Servicio de Entrada</field>
+        <field name="res_model">services.sbs.db</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">Ingresa tus servicios aquí!!!</p>
+        </field>
+        <field name="context">{"search_default_tag_in":1}</field>
+    </record>
+    <record id="action_view_services_out" model="ir.actions.act_window">
+        <field name="name">Servicio de Entrada</field>
+        <field name="res_model">services.sbs.db</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_empty_folder">Ingresa tus servicios aquí!!!</p>
+        </field>
+        <field name="context">{"search_default_tag_out":1}</field>
+    </record>
+
+    <record id="view_res_users_services" model="ir.ui.view">
+        <field name="name">view.res.users.add.services</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_simple_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="sheet" position="inside">
+                <group>
+                    <field name="services_id_user" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Wizards -->
+
+
+    <!-- <record model="ir.actions.act_window" id="wizard_sale_for_services_act_window"> -->
+        <!-- <field name="name">Cotización Servicios</field> -->
+        <!-- <field name="res_model">sale.order</field> -->
+        <!-- <field name="view_type">form</field> -->
+        <!-- <field name="view_mode">form</field> -->
+        <!-- <field name="target">new</field> -->
+    <!-- </record> -->
+
+
+    <!-- Forms -->
+    <record id="services_sbs_db_view_form" model="ir.ui.view">
+        <field name="name">services.sbs.db.view.form</field>
+        <field name="model">services.sbs.db</field>
+        <field name="arch" type="xml">
+            <form string="Servicios">
+                <header>
+                    <button string="Enviar a Salida" type="object" name="tag_entregado" class="oe_highlight"/>
+                    <field name="tag" widget="statusbar"/>
+                </header>
+                <sheet>
+                <!-- <div class="oe_button_box" name="button_box">
+                        <button name="preview_sale_order" type="object" class="oe_stat_button" icon="fa-globe icon">
+                            <div class="o_field_widget o_stat_info">
+                                <span class="o_stat_text">Ver</span>
+                                <span class="o_stat_text">Modelo</span>
+                            </div>
+                        </button>
+                    </div> -->
+                    <group>
+                        <group>
+                            <group>
+                                <group>
+                                    <h1 style="color:#00000;text-align:left;">
+                                        Servicio: S<field name="id"/>
+                                    </h1>
+                                    <br/>
+                                </group>
+                                <group>
+                                    <field name="client_name"/>
+                                    <field name="category_id"/>
+                                    <field name="serie"/>
+                                    <field name="name"/>
+                                    <field name="date"/>
+                                </group>
+                            </group>
+                            <h2>Datos del Productos</h2>
+                            <notebook>
+                                <page name="Fallas" string="Fallas">
+                                    <field name="producto_flaw" placeholder="Ingrese las fallas del equipo"/>
+                                </page>
+                                <page name="Observaciones" string="Observaciones">
+                                    <field name="observation" placeholder="Ingrese sus observaciones" />
+                                </page>
+                                <page name="Soluciones" string="Soluciones">
+                                    <field name="solution" placeholder="Ingrese las posibles soluciones"/>
+                                </page>
+                            </notebook>
+                        </group>
+                    </group>
+                    <div class="oe_chatter">
+                        <field name="services_id_user" widget="mail_thread"/>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vistas -->
+    <record id="view_tree_services" model="ir.ui.view">
+        <field name="name">view.tree.services.sbs.db</field>
+        <field name="model">services.sbs.db</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="client_name" />
+                <field name="name" />
+                <field name="category_id" />
+                <field name="serie" optional="hide"/>
+                <field name="date" optional="hide"/>
+                <field name="services_id_user" />
+                <field name="producto_flaw" />
+            </tree>
+        </field>
+    </record>
+
+
+    <!-- Filtrado de Búsqueda -->
+    <record id="services_view_search" model="ir.ui.view">
+        <field name="name">services.view.search</field>
+        <field name="model">services.sbs.db</field>
+        <field name="arch" type="xml">
+            <search >
+                <field name="client_name" />
+                <field name="name" />
+                <field name="category_id" />
+                <field name="serie" />
+            <!-- 
+                <filter name="filter_today" 
+                string="Hoy" 
+                domain="[('date', '&gt;', datetime.datetime.now().strftime('%Y-%m-%d 00:00:00')),('date', '&lt;', datetime.datetime.now().strftime('%Y-%m-%d 23:59:59'))]"/> -->
+
+                <filter name="tag_in" string="Entrada" domain="[('tag', '=', 'Recibido')]"/>
+                <filter name="tag_out" string="Salida" domain="[('tag', '=', 'Entregado')]"/> <!-- context="{'group_by': 'field_name'}" -->
+                <filter name="marca_group" string="Marca" context="{'group_by': 'category_id'}" />
+            </search>
+        </field>
+    </record>
+
+
+
+
+
+    <!-- Menús -->
+    <menuitem
+        id="services_all"
+        name="Servicios"
+        action="smart_binary_solutions.action_view_services_in"
+        />
+
+    <!-- Acciones de Ventana - Servicios -->
+    <menuitem
+        id="services_all_menu"
+        name="Servicios"
+        action=""
+        parent="smart_binary_solutions.services_all"
+        />
+    <menuitem
+        id="services_menu_in"
+        name="Servicios: Entrada"
+        action="smart_binary_solutions.action_view_services_in"
+        parent="smart_binary_solutions.services_all_menu"
+        />
+    <menuitem
+        id="services_menu_out"
+        name="Servicios: Salida"
+        action="smart_binary_solutions.action_view_services_out"
+        parent="smart_binary_solutions.services_all_menu"
+        />
+
+    <!-- Acciones de Ventana - Contactos -->
+    <!-- <menuitem
+        id="contactos_services_menu"
+        name="Contactos"
+        /> -->
+
+</odoo>
