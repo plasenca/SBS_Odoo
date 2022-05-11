@@ -138,25 +138,5 @@
     </record>
 
 
-
-
-    <!-- Acciones de Ventana -->
-
-        <!-- Model products.sbs.db -->
-        <menuitem
-            id="products_all_menu"
-            name="Servicios"
-            action=""
-            parent="smart_binary_solutions.product_menu"/>
-        <menuitem
-            id="products_in_menu"
-            name="Servicios Entrada"
-            action="smart_binary_solutions.action_view_productIn"
-            parent="smart_binary_solutions.products_all_menu"/>
-        <menuitem
-            id="products_out_menu"
-            name="Servicios Salida"
-            action="smart_binary_solutions.action_view_productOut"
-            parent="smart_binary_solutions.products_all_menu"/>
     
 </odoo>
