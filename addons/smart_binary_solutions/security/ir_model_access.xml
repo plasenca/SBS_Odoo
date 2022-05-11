@@ -51,4 +51,26 @@
         <field name="perm_read" eval="True"/>
     </record>
     
+        <!-- Permisos-Modelo: services.sbs.db -->
+    <record id="model_access_services" model="ir.model.access">
+        <field name="name">model.access.services</field>
+        <field name="model_id" ref="smart_binary_solutions.model_services_sbs_db"/>
+        <field name="group_id" ref="smart_binary_solutions.res_groups_tecnico1"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="perm_read" eval="True"/>
+    </record>
+
+    <!-- Permisos-Modelo: sa.category -->
+    <record id="model_access_category" model="ir.model.access">
+        <field name="name">model.access.category</field>
+        <field name="model_id" ref="smart_binary_solutions.model_sa_category"/>
+        <field name="group_id" ref="smart_binary_solutions.res_groups_tecnico1"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+        <field name="perm_read" eval="True"/>
+    </record>
+    
 </odoo>
