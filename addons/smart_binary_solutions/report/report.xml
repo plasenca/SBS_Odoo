@@ -27,6 +27,14 @@
         paperformat="smart_binary_solutions.paperformart_A4"
         name="smart_binary_solutions.report_producto_in"
         print_report_name="'orden%s_%s'%(object.id,object.name)"/>
+    <report 
+        id="smart_binary_solutions.action_report_services"
+        string="Reporte Servicio"
+        model="services.sbs.db"
+        report_type="qweb-pdf"
+        paperformat="smart_binary_solutions.paperformart_A4"
+        name="smart_binary_solutions.report_services"
+        print_report_name="'%s-%s'%(object.id,object.name)"/>
 
     <!-- <record id="action_report_product_in" model="ir.actions.report">
         <field name="name">Reporte de Entrada</field>

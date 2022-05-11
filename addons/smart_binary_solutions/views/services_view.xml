@@ -152,6 +152,7 @@
         id="services_all"
         name="Servicios"
         action="smart_binary_solutions.action_view_services_in"
+        web_icon="smart_binary_solutions,static/src/img/servicios.png"
         />
 
     <!-- Acciones de Ventana - Servicios -->

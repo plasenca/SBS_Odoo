@@ -144,12 +144,12 @@
         name="Mi Cuenta"
         action="smart_binary_solutions.action_server_mi_cuenta"
         parent=""/> -->
-    <menuitem
+    <!-- <menuitem
         id="product_menu"
         name="Servicios"
         action="smart_binary_solutions.action_view_productIn"
         web_icon="smart_binary_solutions,static/src/img/servicios.png"
-        />
+        /> -->
 
     <!-- Acciones de Ventana -->
 

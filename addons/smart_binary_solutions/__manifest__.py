@@ -28,6 +28,7 @@
         'security/ir_rule.xml',
         'security/ir_model_access.xml',
         'report/templates.xml',
+        'report/template_services.xml',
         'report/report.xml',
         'views/views.xml',
         'views/templates.xml',
